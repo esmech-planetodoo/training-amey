@@ -17,7 +17,7 @@ class Student(models.Model):
     phone = fields.Char(string="Phone No")
     email = fields.Char(string="Email")
 
-    hobbies_id = fields.One2many('student.hobbies','student_id', string="Hobbies")
+    hobbies_ids = fields.One2many('student.hobbies', 'student_id', string="Hobbies")
 
     @api.depends('dob')
     def calculate_age(self):
@@ -32,3 +32,11 @@ class Student(models.Model):
                 if record.l_name:
                     fullname = record.f_name + ' ' + record.l_name
                     record.full_name = fullname
+
+class Hobbies(models.Model):
+    _name = 'student.hobbies'
+
+    student_id = fields.Many2one('student.info', string='Student', required=True)
+    reading = fields.Boolean(string="Reading")
+    swimming = fields.Boolean(string="Swimming")
+    dancing = fields.Boolean(string="Dancing")
