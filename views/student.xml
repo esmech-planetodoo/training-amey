@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <menuitem id="student_info_root_menu"
+              name="Esmech College Management"
+              sequence="100"/>
+    </data>
+<!--search view-->
+    <record id="student_info_search_view" model="ir.ui.view">
+        <field name="model">student.info</field>
+        <field name="arch" type="xml">
+                <search string="student info Categories">
+                    <field name="f_name" />
+                    <field name="l_name" />
+                    <field name="full_name" />
+                     <field name="age"/>
+                     <field name="dob"/>
+                     <field name="gender"/>
+                     <field name="rollno"/>
+                     <field name="phone"/>
+                     <field name="email"/>
+                </search>
+            </field>
+    </record>
+    <!--tree view-->
+
+    <record id="student1_info_tree_view" model="ir.ui.view">
+        <field name="model">student.info</field>
+        <field name="arch" type="xml">
+                <tree string="Student Info">
+                    <field name="full_name"/>
+                    <field name="age"/>
+                    <field name="dob"/>
+                     <field name="gender"/>
+                     <field name="rollno"/>
+                     <field name="phone"/>
+                     <field name="email"/>
+                </tree>
+            </field>
+    </record>
+
+    <!--from views-->
+
+    <record id="student_form_view" model="ir.ui.view">
+        <field name="model">student.info</field>
+        <field name="arch" type="xml">
+            <form string="Student Info">
+                <header>
+                    <field name="full_name"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="f_name" />
+                        <field name="l_name" />
+                        <field name="full_name" />
+                        <field name="gender"/>
+                        <field name="dob"/>
+                        <field name="age"/>
+                        <field name="rollno"/>
+                        <field name="phone"/>
+                        <field name="email"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--action-->
+    <record id="student_info_action_form" model="ir.actions.act_window">
+        <field name="name">Student Info</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.info</field>
+        <field name="search_view_id" ref="student_info_search_view"/>
+        <field name="view_id" ref="student1_info_tree_view"/>
+    </record>
+
+    <!--submenu-->
+        <menuitem id="student_data_submenu" name="Student Data" parent="student_info_root_menu" sequence="0" />
+        <menuitem id="student_info_submenu" name="Student Details" parent="student_data_submenu" action="student_info_action_form" />
+</odoo>
